@@ -1,0 +1,30 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Trang chủ{% endblock %}
+
+{% block content %}
+
+<section class="container">
+{#    <ul class="pagination mt-1">#}
+{#        {% for i in range(pages) %}#}
+{#        <li class="page-item"><a class="page-link" href="/?page={{i+1}}">{{ i+1}}</a></li>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+{##}
+{#    <div class="row">#}
+{#        {% for p in products %}#}
+{#        <div class="col-xs-12 col-md-3" style="padding: 8px;">#}
+{#            <div class="card">#}
+{#                <img class="card-img-top" src="{{ p.image }}" alt="Card image">#}
+{#                <div class="card-body">#}
+{#                    <h4 class="card-title">{{ p.name }}</h4>#}
+{#                    <p class="card-text">{{ "{:,.0f}".format(p.price) }} VNĐ</p>#}
+{#                    <a href="/products/{{p.id}}" class="btn btn-primary">Xem chi tiết</a>#}
+{#                    <a href="javascript:;" class="btn btn-danger" onclick="addToCart({{p.id}}, '{{p.name}}', {{p.price}})">Đặt hàng</a>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        {% endfor %}#}
+{#    </div>#}
+</section>
+{% endblock %}

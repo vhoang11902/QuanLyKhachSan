@@ -1,0 +1,11 @@
+{% if current_user.is_authenticated %}
+        <nav class="d-flex flex-row-reverse text-white container-fluid px-5" style="background-color: #bbad9c">
+            <a class="text-white px-2 py-1 nav-link" style="font-weight: lighter;" href="{{ url_for('user_signout') }}">Sign Out</a>
+            <a class="text-white px-2 py-1 " style="font-weight: lighter;" href="{{ url_for('index') }}">{{current_user.user.name}}</a>
+        </nav>
+    {% else %}
+        <nav class="d-flex flex-row-reverse text-white container-fluid px-5" style="background-color: #bbad9c">
+            <a class="text-white px-2 py-1 nav-link" style="font-weight: lighter;" href="{{ url_for('user_register') }}"> Sign up</a>
+            <a class="text-white px-2 py-1 nav-link" style="font-weight: lighter;" href="{{ url_for('user_signin') }}">Login</a>
+        </nav>
+    {% endif %}

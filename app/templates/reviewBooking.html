@@ -1,0 +1,165 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Giỏ hàng{% endblock %}
+
+{% block content %}
+<div class="row" style="margin: 70px 100px">
+    <h2>Please Review Your Booking</h2>
+    <h4 style="color: rgb(104, 113, 118)">Please review your booking details before submit your booking</h4>
+    <div class="row mt-4 ">
+        <form class="col-8">
+            <div class="mb-5">
+                <div class="col-12 cardInfo p-3 bg-white">
+                    <div class="col-12">
+                        <div class="col-12">
+                            <div class="d-flex p-0 py-2 border-bottom border-2 ">
+                                <div class="px-2" style="font-weight: bold">Booking Id: </div>
+                                <div class="">{{ booking_id}}</div>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex justify-content-between px-2 py-2 border-bottom border-2 ">
+                            <div class="col-4">
+                                <div class="py-1" style="font-size: 16px; color: rgb(104, 113, 118)">Check-in</div>
+                                <div class="py-1" style="font-size: 15px;font-weight: bold">{{ checkInDay }}</div>
+                                <div class="py-1" style="font-size: 15px">From 14:00</div>
+                            </div>
+                            <div class="col-4">
+                                <div class="py-1" style="font-size: 16px; color: rgb(104, 113, 118)">Check-out</div>
+                                <div class="py-1" style="font-size: 15px;font-weight: bold">{{ checkOutDay }}</div>
+                                <div class="py-1" style="font-size: 15px">Before 12:00</div>
+                            </div>
+                            <div class="col-4">
+                                <div class="py-1" style="font-size: 16px; color: rgb(104, 113, 118)">Duration of Stay</div>
+                                <div class="py-1" style="font-size: 17px">2 Nights</div>
+                            </div>
+                        </div>
+                        <div class="col-12 px-2 py-2 ">
+                            <div class="col-12">
+                                <div class="py-2" style="font-size: 17px;font-weight: bold">{{ roomName }} Room</div>
+                            </div>
+
+                            <div class="col-12 d-flex">
+                                <div class="col-6 d-flex justify-content-between">
+                                    <div class="col-6">
+                                        <div class="py-1" style="font-size: 16px; color: rgb(104, 113, 118)">Guests per room</div>
+                                        <div class="py-1" style="font-size: 16px; color: rgb(104, 113, 118)">Bed Type</div>
+                                    </div>
+                                    <div class="col-6 px-2">
+                                        <div class="py-1" style="font-size: 17px">2 Nights</div>
+                                        <div class="py-1" style="font-size: 17px">1 double bed</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 d-flex">
+                                    <div class="col-4">
+                                        <img importance="low" loading="lazy" src="https://ik.imagekit.io/tvlk/generic-asset/dgXfoyh24ryQLRcGq00cIdKHRmotrWLNlvG-TxlcLxGkiDwaUSggleJNPRgIHCX6/hotel/asset/20023314-1dd3b52ce5baa32f9a4b15a21224d64b.jpeg?_src=imagekit&amp;tr=h-92,q-40,w-92" srcset="https://ik.imagekit.io/tvlk/generic-asset/dgXfoyh24ryQLRcGq00cIdKHRmotrWLNlvG-TxlcLxGkiDwaUSggleJNPRgIHCX6/hotel/asset/20023314-1dd3b52ce5baa32f9a4b15a21224d64b.jpeg?_src=imagekit&amp;tr=h-92,q-40,w-92 1x, https://ik.imagekit.io/tvlk/generic-asset/dgXfoyh24ryQLRcGq00cIdKHRmotrWLNlvG-TxlcLxGkiDwaUSggleJNPRgIHCX6/hotel/asset/20023314-1dd3b52ce5baa32f9a4b15a21224d64b.jpeg?_src=imagekit&amp;tr=dpr-2,h-92,q-40,w-92 2x, https://ik.imagekit.io/tvlk/generic-asset/dgXfoyh24ryQLRcGq00cIdKHRmotrWLNlvG-TxlcLxGkiDwaUSggleJNPRgIHCX6/hotel/asset/20023314-1dd3b52ce5baa32f9a4b15a21224d64b.jpeg?_src=imagekit&amp;tr=dpr-3,h-92,q-40,w-92 3x" decoding="async" width="92" height="92" class="r-kdyh1x" style="object-fit: fill; object-position: 50%;">
+                                    </div>
+                                    <div class="col-8 d-flex">
+                                        <div>
+                                            <img src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/0/01cf1090e2f434a7d63f1cbca912ef44.svg" style="margin-right: 12px;">
+                                        </div>
+                                        <div style="color: green">Free Wifi</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="mb-5">
+                <div class="col-12 cardInfo bg-white">
+                    <div class="p-3">
+                        <div class="" style="font-size: 20px;font-weight: bold">Accommodation Policies</div>
+                    </div>
+                    <div class="border-bottom border-2"></div>
+                    <div class="col-12 p-3 d-flex">
+                        <div>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-id="IcSystemClock"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#687176" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 6V12L16 14" stroke="#687176" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        </div>
+                        <div class="px-2">
+                            <div style="font-size: 17px;font-weight: bold">Check-in/Check-out Time</div>
+                            <div class="d-flex">
+                                <div class="d-flex">
+                                    <div class="py-1" style="font-size: 17px; color: rgb(104, 113, 118)">Check-in:</div>
+                                    <div class="py-1 px-2" style="font-size: 17px;font-weight: bold">From 14:00</div>
+                                </div>
+                                <div class="d-flex px-3">
+                                    <div class="py-1" style="font-size: 17px; color: rgb(104, 113, 118)">Check-out:</div>
+                                    <div class="py-1 px-2" style="font-size: 17px;font-weight: bold">Before 12:00</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="mb-3">
+                <h4 class="mb-3">Price details</h4>
+                <div class="col-12 p-3 cardInfo bg-white">
+                    <div class="col-12 d-flex justify-content-between collapse " data-bs-toggle="collapse" data-bs-target="#total">
+                        <h5 class="m-0">Total</h5>
+                        <div class="d-flex">
+                            <i class="fi fi-rr-angle-small-down mx-2"style="font-size: 25px"></i>
+                            <h5 class="m-0">{{ "{:,.0f}".format(roomPrice) }} VNĐ</h5>
+                        </div>
+                    </div>
+                    <div id="total" class="collapse border-top">
+                        <div class="d-flex justify-content-between my-4">
+                            <div class="">(1x) {{ roomName }} (2 Nights)</div>
+                            <div class="">{{ "{:,.0f}".format(roomPrice) }} VNĐ</div>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <div class="">Taxes and fees (10%)</div>
+                            <div class="">{{ "{:,.0f}".format(roomTax) }} VNĐ</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="mb-5">
+nh                <div class="d-flex justify-content-between">
+                    <div style="width: 60%">Bằng cách nhấp vào nút này, bạn thừa nhận rằng bạn đã đọc và đồng ý với
+                    các Điều khoản & Điều kiện và Chính sách bảo mật của Traveloka</div>
+                    <div class="">
+                        <a href="javascript:;" class="btn bookButton text-white px-3 py-2" onclick="submitBooking({{ booking_id }}, '{{ roomId }}','{{ name }}','{{ numPhone }}','{{ email }}','{{ checkInDay }}','{{ checkOutDay }}')">Submit Booking</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="col-4">
+            <div class="cardRight mx-2 mb-4 bg-white">
+                <div class="p-3">
+                    <div class="" style="font-size: 17px;font-weight: bold">Contact Details</div>
+                </div>
+                <div class="border-bottom border-2">
+
+                </div>
+                <div class="col-12 d-flex p-3">
+                    <div class="col-3">
+                        <div class="py-1" style="font-size: 16px; color: rgb(104, 113, 118)">Name :</div>
+                        <div class="py-1" style="font-size: 16px; color: rgb(104, 113, 118)">Phone :</div>
+                        <div class="py-1" style="font-size: 16px; color: rgb(104, 113, 118)">Email:</div>
+                    </div>
+                    <div class="col-9">
+                        <div class="py-1" style="font-size: 17px">{{ name }}</div>
+                        <div class="py-1" style="font-size: 17px">{{ numPhone }}</div>
+                        <div class="py-1" style="font-size: 17px">{{ email }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="cardRight mx-2 bg-white">
+                <div class="p-3">
+                    <div class="" style="font-size: 17px;font-weight: bold">Guest Details</div>
+                </div>
+                <div class="border-bottom border-2"></div>
+                <div class="col-12 p-3">
+                    <div>
+                        <div class="py-1" style="font-size: 16px; color: rgb(104, 113, 118)">Name Contact:</div>
+                        <div class="py-1" style="font-size: 17px">{{ name }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Booking now{% endblock %}
+{% block content %}
+    <div class="my-4">
+    <form id="searchRoom" method="post" class="row container m-0">
+            <div class="col-3 mx-2">
+                <label class=" text-center justify-content-center" for="date">Check-in:</label>
+                <input  type="date" name="date" id="date" class="form-control">
+            </div>
+            <div class="col-3 mx-2">
+                <label for="num_guests">Số người:</label>
+                <input type="number" name="num_guests" id="num_guests" min="1" max="100" class="form-control input">
+            </div>
+            <div class="col-3 mx-2">
+                <label for="num_guests">Số đêm nghỉ:</label>
+                <input type="number" name="num_nights" id="num_nights" min="1" max="100" class="form-control input">
+            </div>
+            <div class="col-2 mx-2 buttonCus text-center p-3">
+                <button type="submit" class="btn btn btn-danger text-uppercase btnSearch">Find room</button>
+            </div>
+    </form>
+    <div class="col-12 p-0 mt-5" style="padding: 8px;" id="resultContainer">
+{#        <div class="border row m-2 p-4 bg-white cardItem">#}
+{#            <img class="col-5" style="width: 350px" src="https://digital.ihg.com/is/image/ihg/intercontinental-ho-chi-minh-city-6392782644-4x3?wid=540&amp;fit=constrain" alt="Card image">#}
+{#            <div class="col-7 container-fluid cardBody">#}
+{#                <h2 class="card-title">{{ p.name }}</h2>#}
+{##}
+{#                <p class="card-text">{{ "{:,.0f}".format(p.price) }} VNĐ</p>#}
+{#                <a href="/products/{{p.id}}" class="btn btn-primary">Xem chi tiết</a>#}
+{#                <a href="javascript:;" class="btn btn-primary " onclick="addToCart({{p.id}}, '{{p.name}}', {{p.price}})">Select</a>#}
+{#            </div>#}
+{#        </div>#}
+    </div>
+        </div>
+{% endblock %}

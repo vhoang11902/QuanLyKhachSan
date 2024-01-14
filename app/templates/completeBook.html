@@ -1,0 +1,176 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Giỏ hàng{% endblock %}
+
+{% block content %}
+<div class="row" style="margin: 70px 100px">
+    <h2>Complete your reservation</h2>
+    <h4 style="color: rgb(104, 113, 118)">Make sure all the details on this page are correct before proceeding to payment.</h4>
+    <div class="row mt-4 ">
+        <form action="/reviewBooking/{{ booking_id }}" method="post" class="col-8">
+            <div class="mb-5">
+                <h4 class="mb-3">Your Information</h4>
+                <div class="col-12 cardInfo p-3 bg-white">
+                    {% if current_user.is_authenticated %}
+                        <input type="hidden" value="{{ current_user.id  }}" id="userId" name="userId">
+                        <div class="mb-2">
+                             <label class="col-12" style="font-size: 14px">Contact's name</label>
+                             <input class="col-12 inputInfo" type="text" id="nameCustomer" name="nameCustomer" placeholder="Nguyen Van A" value="{{ current_user.user.name  }}">
+                             <a style="font-size: 12px; color: rgb(104, 113, 118)">As in Passport/Official ID Card (without title/special characters)</a>
+                        </div>
+                        <div class="row mb-2 col-12">
+                            <div class="col-6">
+                                <label class="" style="font-size: 14px">Mobile Number</label>
+                                <input class="col-12 inputInfo" type="number" id="numPhoneCus" name="numPhoneCus" placeholder="037*******" value="{{ current_user.user.phoneNum }}">
+                            </div>
+                            <div class="col-6">
+                                <label class="" style="font-size: 14px">Contact's email address</label>
+                                <input class="col-12 inputInfo" type="email" id="emailCustomer" name="emailCustomer" placeholder="***@gmail.com" value="{{ current_user.user.email }}">
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="p-4">
+                            <div class=""> Vui lòng <a href="/login?next=/checkOutBooking/{{ id }}">đăng nhập</a> tài khoản để tiếp tục đặt phòng !!!</div>
+                            <div class="">Nếu chưa có tài khoản, vui lòng <a href="/login?next=/cart">đăng ký</a></div>
+                        </div>
+
+                    {% endif %}
+                </div>
+
+            </div>
+            <div class="mb-5">
+                <h4 class="mb-3">Special request</h4>
+                <div class="col-12 cardInfo">
+                    <div class="px-4 py-3">
+                         <div style="font-size: 12px">Have a special request? Ask, and the property will do its best to meet your wish. (Note that special request are not guaranteed and may incur charges)</div>
+                    </div>
+                    <div class="row col-12 p-1 m-0 bg-white" style="border-radius: 0 0 5px 5px">
+                        <div class="col-6">
+                            <div class="form-check m-3">
+                                <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
+                                <label class="form-check-label" style="font-weight: normal">Non-smoking Room</label>
+                            </div>
+                            <div class="form-check m-3">
+                                <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
+                                <label class="form-check-label" style="font-weight: normal">High Floor</label>
+                            </div>
+                            <div class="form-check m-3">
+                                <label class="form-check-label" style="font-weight: normal">Check-in Time</label>
+                                <input class="form-check-input" data-bs-toggle="collapse" data-bs-target="#checkIn" type="checkbox" id="check1" name="option1" value="something">
+                                <div id="checkIn" class="collapse">
+                                    <input type="time" id="checkInTime" class="py-1 px-3 border rounded" >
+                                </div>
+                            </div>
+                            <div class="form-check m-3">
+                                <label class="form-check-label" style="font-weight: normal">Others</label>
+                                <input class="form-check-input" data-bs-toggle="collapse" data-bs-target="#other" type="checkbox" id="check1" name="option1" value="something">
+                                <div id="other" class="collapse">
+                                    <textarea type="text" id="otherRequest" class="col-12 py-1 px-3 border rounded"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-check m-3">
+                                <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
+                                <label class="form-check-label" style="font-weight: normal">Connecting Rooms</label>
+                            </div>
+                            <div class="form-check m-3">
+                                <label class="form-check-label" style="font-weight: normal">Bed Type</label>
+                                <input class="form-check-input" data-bs-toggle="collapse" data-bs-target="#bedType" type="checkbox" id="check1" name="option1" value="something">
+                                <div id="bedType" class="collapse">
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" id="singleBed" name="optradio" value="singleBed">2 Single Beds
+                                        <label class="form-check-label" for="singleBed"></label>
+                                    </div>
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" id="kingBed" name="optradio" value="kingBed">1 King Bed
+                                    <label class="form-check-label" for="kingBed"></label>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-5">
+                <h4 class="mb-3">Cancellation policy</h4>
+                <div class="col-12 cardInfo p-3 bg-white">
+                    <h5 class="mb-3">Free cancellation</h5>
+                    <div style="font-size: 14px">
+                        Any cancellation or amendment to a reservation should be received by 14:00hrs,
+                        hotel local time, 72 hours before the arrival date, to avoid a penalty charge.
+                        Otherwise, a fee equivalent to the rate for the first night of the stay will be due.
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <h4 class="mb-3">Price details</h4>
+                <div class="col-12 p-3 cardInfo bg-white">
+                    <div class="col-12 d-flex justify-content-between collapse " data-bs-toggle="collapse" data-bs-target="#total">
+                        <h5 class="m-0">Total</h5>
+                        <div class="d-flex">
+                            <i class="fi fi-rr-angle-small-down mx-2"style="font-size: 25px"></i>
+                            <h5 class="m-0">{{ "{:,.0f}".format(room_price) }} VNĐ</h5>
+                        </div>
+                    </div>
+                    <div id="total" class="collapse border-top">
+                        <div class="d-flex justify-content-between my-4">
+                            <div class="">(1x) {{ room_name }} (2 Nights)</div>
+                            <div class="">{{ "{:,.0f}".format(room_price) }} VNĐ</div>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <div class="">Taxes and fees (10%)</div>
+                            <div class="">{{ "{:,.0f}".format(room_tax) }} VNĐ</div>
+                        </div>
+                        <input type="hidden" name="room_price" value={{ room_price }}>
+                        <input type="hidden" name="room_name" value={{ room_name }}>
+                        <input type="hidden" name="room_tax" value={{ room_tax }}>
+                        <input type="hidden" name="room_id" value={{ id }}>
+                    </div>
+                </div>
+
+            </div>
+            <div class="mb-5">
+                <div class="d-flex justify-content-between">
+                    <div style="width: 60%">Bằng cách nhấp vào nút này, bạn thừa nhận rằng bạn đã đọc và đồng ý với
+                    các Điều khoản & Điều kiện và Chính sách bảo mật của Traveloka</div>
+                    {% if current_user.is_authenticated %}
+                    <div class="">
+                        <button type="submit" class="btn bookButton text-white px-3 py-2">Countinue to Review</button>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </form>
+        <div class="col-4">
+            <div class="cardRight mx-2">
+                <div class="d-flex cardRightTop px-4">
+                <img src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6aa2fd01a9460e1a71bb0efb713f0212.svg">
+                <div class="px-4 ">Novotel Hotel</div>
+            </div>
+            <div class="my-3">
+               <div class="row mx-1 my-1">
+                   <div class="col-6" style="font-size: 15px; color: rgb(104, 113, 118)">Check-in</div>
+                   <div class="col-6" style="font-size: 15px">{{checkInDay}}</div>
+               </div>
+               <div class="row mx-1 my-1">
+                   <div class="col-6" style="font-size: 15px; color: rgb(104, 113, 118)">Check-out</div>
+                   <div class="col-6" style="font-size: 15px">{{checkOutDay}}</div>
+               </div>
+            </div>
+            <div class="p-3 bg-white" style="border-radius: 0 0 5px 5px">
+                <div style="font-size: 18px; font-weight: bold">(1x) Deluxe Double</div>
+                <div class="row my-1">
+                   <div class="col-6" style="font-size: 15px; color: rgb(104, 113, 118)">Guests per room</div>
+                   <div class="col-6" style="font-size: 15px">{{ guests }} Guests</div>
+                </div>
+                <div class="row my-1">
+                   <div class="col-6" style="font-size: 15px; color: rgb(104, 113, 118)">Bed Type</div>
+                   <div class="col-6" style="font-size: 15px">1 king bed</div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

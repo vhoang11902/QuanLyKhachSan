@@ -1,0 +1,50 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Đăng nhập{% endblock %}
+
+{% block content %}
+
+    <div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body p-4">
+                    <h4 class="text-center mb-4">Login</h4>
+                    <form method="post" action="">
+                        <div class="mb-3" >
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" placeholder="Username" name="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="pwd" placeholder="Password" name="password" required>
+                        </div>
+                        <div class="mb-3">
+                                Don't have an account? <a href="{{ url_for('user_register') }}" class="text-primary">Create</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{#<div class="m-5 p-5 ">#}
+{#    <h2 class="text-center text-info mt-1">LOGIN</h2>#}
+{#    <form class="p-5 m-5 rounded" style="background-color: #dcd8d3" method="post" action="">#}
+{#        <div class="mb-3 mt-3">#}
+{#            <label for="username" class="form-label">Tên đăng nhập:</label>#}
+{#            <input type="text" class="form-control" id="username" placeholder="Tên đăng nhập" name="username">#}
+{#        </div>#}
+{#        <div class="mb-3">#}
+{#            <label for="pwd" class="form-label">Mật khẩu:</label>#}
+{#            <input type="password" class="form-control" id="pwd" placeholder="Mật khẩu" name="password">#}
+{#        </div>#}
+{#        <div class="mb-3 d-flex">#}
+{#             Nếu chưa có tài khoản ? Đăng ký tài khoản  <a class="" href="{{ url_for('user_register') }}"> ở đây !!!</a>#}
+{#        </div>#}
+{#        <button type="submit" class="btn btn-primary mb-3">Đăng nhập</button>#}
+{#    </form>#}
+{#</div>#}
+{% endblock %}

@@ -1,0 +1,165 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+<section class="m-4">
+    <div class="my-4 row">
+        <div class="col-6">
+            <h3>Thông tin phòng: {{ room.name }}</h3>
+            <ul class="list-group list-group-flush">
+                <li style="font-size: 18px" class="list-group-item d-flex">
+                    <div style="font-weight: bold;padding-right: 10px">Hạng phòng: </div>
+                    <div>{{ room.roomType.name }}</div>
+                </li>
+                <li style="font-size: 18px" class="list-group-item d-flex">
+                    <div style="font-weight: bold;padding-right: 10px">Giá thuê:</div>
+                    <div>{{ "{:,.0f}".format(room.roomType.price) }} VNĐ</div>
+
+                </li>
+                <li style="font-size: 18px" class="list-group-item d-flex">
+                    <div style="font-weight: bold;padding-right: 10px">Loại giường: </div>
+                    <div>{{ room.roomType.numBeds }}</div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-6 d-flex justify-content-center">
+            <img class="" style="width: 350px" src="https://digital.ihg.com/is/image/ihg/intercontinental-ho-chi-minh-city-6392782644-4x3?wid=540&amp;fit=constrain" alt="Card image">
+        </div>
+    </div>
+    <div class="border-bottom border-2"></div>
+    <div class="my-4">
+        {% if user_id is none %}
+            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">Booking</button>
+            <div id="demo" class="collapse">
+            <div>
+            <h3>Booking</h3>
+            <form id="bookingRoomAdmin" method="post" class="col-12">
+                <div class="d-flex">
+                    <label style="font-size: 18px" class="col-2 m-0 align-center" for="text">Họ và Tên:</label>
+                    <input type="text" name="date" id="nameCus" class="form-control">
+                </div>
+                <input id="dayAdmin" type="hidden" value="{{ date }}">
+                <input id="room_id" type="hidden" value="{{ room.id }}">
+                <input id="numDays" type="hidden" value="{{ numNights }}">
+                <div class="d-flex col-12 mt-3 p-0">
+                    <div class="col-6 d-flex p-0">
+                        <label style="font-size: 18px" class="col-4 m-0 align-center" for="text">Số điện thoại:</label>
+                        <input type="text" name="date" id="phoneNum" class="form-control">
+                    </div>
+                </div>
+                <div class=" col-12 mt-3 p-0 ">
+                    <button type="submit" class="btn btn-danger ">Submit</button>
+                </div>
+            </form>
+            </div>
+        </div>
+        {% elif booking.checkIn_status is false %}
+            <div>
+            <h3>Thông tin đặt phòng</h3>
+            <form id="" class="col-12">
+                <div class="d-flex">
+                    <label style="font-size: 18px" class="col-2 m-0 align-center" for="text">Họ và Tên:</label>
+                    <input type="text" name="date" id="nameCusAdmin" class="form-control" value={{ user.name }} readonly>
+                </div>
+                <div class="d-flex col-12 mt-3 p-0">
+                    <div class="col-6 d-flex p-0">
+                        <label style="font-size: 18px" class="col-4 m-0 align-center" for="text">Số điện thoại:</label>
+                        <input type="text" name="date" id="phoneCusAdmin" class="form-control" value={{ user.phoneNum }} readonly>
+                    </div>
+                    <div class="col-6 d-flex p-0">
+                        <label style="font-size: 18px" class="col-3 m-0 align-center" for="text">Email:</label>
+                        <input type="text" name="date" id="emailCusAdmin" class="form-control" value={{ user.email }} readonly>
+                    </div>
+                </div>
+                <div class=" col-12 mt-3 p-0 ">
+                    <a href="javascript:;" class="btn btn-primary" onclick="checkInRoom({{ room.id }},'{{ booking_id }}','{{ user.id }}','{{ date }}','{{ numNights }}')">Check In</a>
+                </div>
+            </form>
+
+            <div class="container mb-2">
+            <h4>Thông tin khách hàng</h4>
+
+            <table id="myTable" class="table" name="customer">
+                <thead class="text-center">
+                <tr>
+                    <th>Họ tên</th>
+                    <th>Địa chỉ</th>
+                    <th>CCCD</th>
+                    <th>Khách nước ngoài</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+             <button
+                    type="button"
+                    class="btn btn-primary btn-sm btn-block mt-2 mb-2"
+                    onclick="create()"
+            >
+                <span aria-hidden="true">&plus;</span>
+            </button>
+
+
+        </div>
+
+            </div>
+
+        {% else %}
+            <a href="javascript:;" class="btn btn-primary mx-2" onclick="payBookingRoom({{ room.id }})">Pay</a>
+            <a href="javascript:;" class="btn btn-danger text-white" onclick="checkOutRoom({{ booking_id }})">Check Out</a>
+        {% endif %}
+
+    </div>
+
+</section>
+<script src="{{ url_for('static', filename='js/cart.js') }}"></script>
+    <script>
+    let x = 1
+
+    function create() {
+        if (x < 3) {
+            x = document.getElementById("myTable").rows.length;
+            let table = document.getElementById("myTable");
+            let row = table.insertRow(x);
+            let cell1 = row.insertCell(0);
+            let cell2 = row.insertCell(1);
+            let cell3 = row.insertCell(2);
+            let cell4 = row.insertCell(3);
+            let cell5 = row.insertCell(4);
+            cell1.innerHTML = `<input maxlength="50" required type="text" class="form-control" id="hoten">`;
+            cell2.innerHTML = `<input maxlength="100" required type="text" class="form-control" id="diachi">`;
+            cell3.innerHTML = `<input maxlength="12" required type="text" class="form-control" id="cccd">`;
+            cell4.innerHTML = `<input class="form-check-input" type="checkbox" value="" id="khachnuocngoai">`;
+            cell5.innerHTML = `
+          <button
+                    type="button"
+                    class="btn btn-danger btn-sm btn-block"
+                    onclick="remove(this)"
+            >
+                <span aria-hidden="true">&times;</span>
+            </button>
+          `;
+        }
+    }
+
+    function remove(r) {
+        let i = r.parentNode.parentNode.rowIndex;
+        document.getElementById("myTable").deleteRow(i);
+        x--;
+    }
+    function submitForm() {
+        let table = document.getElementById("myTable");
+        let inputs = table.querySelectorAll("input");
+        let obj = [];
+        inputs.forEach((input) => {
+            obj.push(input.value);
+        });
+        let temp = _.chunk(obj, 3);
+
+        let customer = temp.map((c) => {
+            return {data: c};
+        });
+        let jsonString = JSON.stringify(customer);
+        console.log(jsonString)
+    }
+</script>
+{% endblock %}

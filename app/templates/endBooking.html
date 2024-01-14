@@ -1,0 +1,28 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Giỏ hàng{% endblock %}
+
+{% block content %}
+<section class="row" style="margin: 70px 100px">
+{#    <h1>Thank you for your booking !!!</h1>#}
+{#    <h2>Your order code is: {{ booking_id }} </h2>#}
+{#    <h2>We also sent a same code to your email to confirm your order !!!</h2>#}
+{#    <h2>We will prepare and ship your order immediately to you. This process will take about 5 days.</h2>#}
+{#    <h2>Thanks for choosing us. Have a nice day. </h2>#}
+
+    <div class="text-center my-2">
+        <h1>Thank you for your Booking</h1>
+    </div>
+    <div class="text-center my-2">
+        <h3>Your booking code is: {{ booking_id }} </h3>
+        <h3>We also sent a same code to your email to confirm your Booking !!!</h3>
+    </div>
+    <div class="text-center my-2">
+        <h4 >If you have any further requests, please contact us via email or hotline.</h4>
+        <h4 style="color: rgb(104, 113, 118)">Thanks for choosing us. Have a nice day. </h4>
+    </div>
+    <div class="text-center my-2">
+        <button class="btn btn-danger text-white">Home Page</button>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+<section class="">
+    <form id="searchRoomAdmin" method="post" class="d-flex justify-content-center">
+        <div class="col-4">
+            <label class=" text-center justify-content-center" for="date">Check-in:</label>
+            <input  type="date" name="date" id="dateAdmin" class="form-control">
+        </div>
+        <div class="col-4">
+            <label for="num_guests">Số đêm nghỉ:</label>
+            <input type="number" name="num_nights" id="num_nightsAdmin" min="1" max="100" class="form-control input">
+        </div>
+        <div class="col-2 buttonCus text-center p-3">
+            <button type="submit" class="btn btn btn-danger text-uppercase btnSearch">Find room</button>
+        </div>
+    </form>
+    <div class="col-12 p-0 mt-3 row justify-content-center text-center" style="padding: 8px;" id="resultContainerAdmin">
+        {% for room in rooms %}
+            <div class="col-2 m-3">
+                <a class="btn border border-2 text-dark rounded"
+                   {% for roomAble, room_type, Booking in booking_room.all() %}
+                        {% if roomAble.name == room.name and Booking.checkIn_status == False %}
+                            style="background-color: yellow"
+                        {% elif roomAble.name == room.name and Booking.checkIn_status == True %}
+                            style="background-color: red"
+                        {% endif %}
+                    {% endfor %}
+                <a class="btn border border-2 text-dark rounded"
+                    {% for roomAble, room_type, Booking in booking_room.all() %}
+                        {% if roomAble.name == room.name and Booking.checkIn_status == False %}
+                            style="background-color: yellow"
+                        {% elif roomAble.name == room.name and Booking.checkIn_status == True %}
+                            style="background-color: Red"
+                        {% endif %}
+                    {% endfor %}
+                    href="/admin/booking/{{ room.id }}/?{% for roomAble, room_type, Booking in booking_room.all() %}{% if roomAble.name == room.name %}user={{ Booking.user_id }}&booking_id={{ Booking.id }}{% endif %}{% endfor %}">
+                    <div style="width: 150px;height: 100px">
+                        <div style="font-size: 16px">{{ room.roomType.name }}</div>
+                        <h3 class="m-0 ">{{ room.name }}</h3>
+                        {% for roomAble, room_type, Booking in booking_room.all() %}
+                        {% if roomAble.name == room.name %}
+                            <div class="" style="font-size: 16px">{{ Booking.user.name }}</div>
+                        {% endif %}{% endfor %}
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+<script src="{{ url_for('static', filename='js/cart.js') }}"></script>
+{% endblock %}
